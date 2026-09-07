@@ -6,3 +6,8 @@ a { color: white; margin-left: 1rem; text-decoration: none; }
 .brand { font-size: 1.25rem; font-weight: 700; margin-left: 0; }
 main { margin: 3rem auto; max-width: 760px; padding: 0 1.5rem; }
 .health-status { background: white; border-left: 4px solid #176b3a; padding: 1rem; }
+form { display: grid; gap: .75rem; max-width: 540px; }
+label { display: grid; gap: .25rem; text-transform: capitalize; }
+input, button { font: inherit; padding: .55rem; }
+button { background: #176b3a; border: 0; color: white; cursor: pointer; }
+.error { color: #a30000; }
