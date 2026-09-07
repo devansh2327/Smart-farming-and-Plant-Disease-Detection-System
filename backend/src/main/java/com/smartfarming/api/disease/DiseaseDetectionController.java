@@ -39,6 +39,8 @@ public class DiseaseDetectionController {
                         String.valueOf(modelStatus.get("message")));
             }
             return diseaseDetectionService.detect(image);
+        } catch (ResponseStatusException error) {
+            throw error;
         } catch (HttpStatusCodeException error) {
             throw new ResponseStatusException(error.getStatusCode(), error.getResponseBodyAsString(), error);
         } catch (Exception error) {
