@@ -17,7 +17,7 @@ export default function CropRecommendation() {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values),
       })
       const data = await response.json()
-      if (!response.ok) throw new Error(data.detail || 'Prediction failed')
+      if (!response.ok) throw new Error(data.message || data.detail || 'Prediction failed')
       setResult(`Recommended crop: ${data.crop}`)
     } catch (requestError) {
       setError(requestError.message)
