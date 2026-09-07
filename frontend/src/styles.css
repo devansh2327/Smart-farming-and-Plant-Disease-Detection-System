@@ -1,0 +1,8 @@
+:root { font-family: Arial, sans-serif; color: #183b25; background: #f3f8f2; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { align-items: center; background: #176b3a; display: flex; justify-content: space-between; padding: 1rem 2rem; }
+a { color: white; margin-left: 1rem; text-decoration: none; }
+.brand { font-size: 1.25rem; font-weight: 700; margin-left: 0; }
+main { margin: 3rem auto; max-width: 760px; padding: 0 1.5rem; }
+.health-status { background: white; border-left: 4px solid #176b3a; padding: 1rem; }
