@@ -11,3 +11,7 @@ label { display: grid; gap: .25rem; text-transform: capitalize; }
 input, button { font: inherit; padding: .55rem; }
 button { background: #176b3a; border: 0; color: white; cursor: pointer; }
 .error { color: #a30000; }
+.feature-links { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.feature-links a, .card { background: white; border-left: 4px solid #176b3a; color: #183b25; margin: 0; padding: 1rem; }
+table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #c8d4c8; padding: .65rem; text-align: left; }
+.card { margin: 1rem 0; }.chat { background: white; min-height: 100px; padding: 1rem; }

@@ -3,6 +3,10 @@ import Dashboard from './pages/Dashboard'
 import CropRecommendation from './pages/CropRecommendation'
 import YieldPrediction from './pages/YieldPrediction'
 import DiseaseDetection from './pages/DiseaseDetection'
+import Weather from './pages/Weather'
+import MarketPrices from './pages/MarketPrices'
+import GovernmentSchemes from './pages/GovernmentSchemes'
+import Chatbot from './pages/Chatbot'
 
 function Placeholder({ title }) {
   return <main><h1>{title}</h1><p>This page will be added in a later milestone.</p></main>
@@ -18,6 +22,10 @@ export default function App() {
           <NavLink to="/crop-recommendation">Crop Recommendation</NavLink>
           <NavLink to="/yield-prediction">Yield Prediction</NavLink>
           <NavLink to="/disease-detection">Disease Detection</NavLink>
+          <NavLink to="/weather">Weather</NavLink>
+          <NavLink to="/market-prices">Market Prices</NavLink>
+          <NavLink to="/government-schemes">Schemes</NavLink>
+          <NavLink to="/chatbot">Chatbot</NavLink>
           <NavLink to="/profile">Profile</NavLink>
         </nav>
       </header>
@@ -26,6 +34,10 @@ export default function App() {
         <Route path="/crop-recommendation" element={<CropRecommendation />} />
         <Route path="/yield-prediction" element={<YieldPrediction />} />
         <Route path="/disease-detection" element={<DiseaseDetection />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/market-prices" element={<MarketPrices />} />
+        <Route path="/government-schemes" element={<GovernmentSchemes />} />
+        <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/profile" element={<Placeholder title="Farmer Profile" />} />
       </Routes>
     </div>
