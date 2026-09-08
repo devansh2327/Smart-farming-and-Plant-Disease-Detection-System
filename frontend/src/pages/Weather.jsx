@@ -17,7 +17,7 @@ export default function Weather() {
     } catch (requestError) { setError(requestError.message) }
   }
 
-  return <main><h1>Weather</h1><form onSubmit={submit}>
+  return <main className="weather-page"><section className="page-hero weather-hero"><h1>Weather</h1><p>Check local conditions before planning your farm work.</p></section><form onSubmit={submit}>
     <label>City<input value={city} required onChange={(event) => setCity(event.target.value)} /></label>
     <button type="submit">Get Weather</button>
   </form>{error && <p className="error">{error}</p>}

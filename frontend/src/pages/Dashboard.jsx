@@ -14,11 +14,10 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <main>
-      <h1>Smart Farming Dashboard</h1>
-      <p>Machine Learning Based Smart Farming and Plant Disease Detection System</p>
+    <main className="dashboard-page">
+      <section className="page-hero dashboard-hero"><h1>Smart Farming Dashboard</h1><p>Machine Learning Based Smart Farming and Plant Disease Detection System</p></section>
       <p className="health-status">{health}</p>
-      <div className="feature-links">
+      <div className="feature-links dashboard-links">
         <Link to="/crop-recommendation">Crop Recommendation</Link>
         <Link to="/yield-prediction">Yield Prediction</Link>
         <Link to="/disease-detection">Disease Detection</Link>

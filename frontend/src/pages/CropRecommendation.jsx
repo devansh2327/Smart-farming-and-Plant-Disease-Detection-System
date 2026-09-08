@@ -24,8 +24,8 @@ export default function CropRecommendation() {
     }
   }
 
-  return <main>
-    <h1>Crop Recommendation</h1>
+  return <main className="crop-page">
+    <section className="page-hero crop-hero"><h1>Crop Recommendation</h1><p>Use your soil and climate values to find a suitable crop.</p></section>
     <form onSubmit={submit}>
       {Object.entries(values).map(([name, value]) => <label key={name}>{name}
         <input required type="number" step="any" value={value} onChange={(event) => setValues({ ...values, [name]: Number(event.target.value) })} />

@@ -3,6 +3,9 @@
 body { margin: 0; }
 header { align-items: center; background: #176b3a; display: flex; justify-content: space-between; padding: 1rem 2rem; }
 a { color: white; margin-left: 1rem; text-decoration: none; }
+.inline-link { color: #176b3a; margin-left: 0; text-decoration: underline; }
+.nav-button { background: transparent; border: 1px solid white; margin-left: 1rem; padding: .25rem .5rem; }
+.farmer-name { color: white; margin-left: 1rem; white-space: nowrap; }
 .brand { font-size: 1.25rem; font-weight: 700; margin-left: 0; }
 main { margin: 3rem auto; max-width: 760px; padding: 0 1.5rem; }
 .health-status { background: white; border-left: 4px solid #176b3a; padding: 1rem; }
@@ -15,3 +18,38 @@ button { background: #176b3a; border: 0; color: white; cursor: pointer; }
 .feature-links a, .card { background: white; border-left: 4px solid #176b3a; color: #183b25; margin: 0; padding: 1rem; }
 table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #c8d4c8; padding: .65rem; text-align: left; }
 .card { margin: 1rem 0; }.chat { background: white; min-height: 100px; padding: 1rem; }
+.page-hero { background-color: #176b3a; background-position: center; background-size: cover; border-radius: 14px; color: white; margin-bottom: 1.25rem; overflow: hidden; padding: 1.55rem; position: relative; }
+.page-hero::before, .profile-hero::before { background: linear-gradient(90deg, rgba(16, 78, 40, .9), rgba(22, 107, 58, .68)); content: ''; inset: 0; position: absolute; }
+.page-hero > *, .profile-hero > * { position: relative; }
+.page-hero h1 { margin: 0 0 .35rem; }.page-hero p { margin: 0; max-width: 620px; }
+.dashboard-hero { background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80'); }
+.crop-hero { background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80'); }
+.yield-hero { background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80'); }
+.disease-hero { background-image: url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1600&q=80'); }
+.weather-hero { background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1600&q=80'); }
+.market-hero { background-image: url('https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=1600&q=80'); }
+.schemes-hero { background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=80'); }
+.chatbot-hero { background-image: url('https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=1600&q=80'); }
+.dashboard-links a { box-shadow: 0 3px 10px rgba(24,59,37,.08); transition: transform .2s ease, box-shadow .2s ease; }.dashboard-links a:hover { box-shadow: 0 8px 18px rgba(24,59,37,.16); transform: translateY(-2px); }
+.market-page table { background: rgba(255,255,255,.94); box-shadow: 0 3px 12px rgba(24,59,37,.08); }.schemes-page .card { background: linear-gradient(100deg, rgba(255,255,255,.97), rgba(242,249,241,.97)); box-shadow: 0 3px 12px rgba(24,59,37,.07); }
+.profile-page, .disease-page { max-width: 960px; }
+.profile-hero { align-items: center; background-color: #176b3a; background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80'); background-position: center; background-size: cover; border-radius: 14px; color: white; display: flex; gap: 1rem; margin-bottom: 1.25rem; overflow: hidden; padding: 1.5rem; position: relative; }
+.profile-hero h1 { margin: .15rem 0; }.profile-hero p { margin: .35rem 0 0; }
+.profile-avatar { align-items: center; background: rgba(255,255,255,.18); border-radius: 50%; display: flex; font-size: 2rem; height: 64px; justify-content: center; width: 64px; }
+.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .08em; margin: 0; text-transform: uppercase; }
+.profile-edit-button { background: white; color: #176b3a; margin-left: auto; white-space: nowrap; }
+.profile-sections { display: grid; gap: 1.25rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.profile-card { background: white; border-radius: 12px; box-shadow: 0 3px 12px rgba(24,59,37,.08); padding: 1.35rem; }
+.profile-card h2 { margin: 0 0 1rem; }.profile-details { display: grid; gap: .75rem; }
+.profile-detail { border-bottom: 1px solid #e1ebe1; display: grid; gap: .2rem; padding-bottom: .7rem; }.profile-detail:last-child { border-bottom: 0; padding-bottom: 0; }
+.profile-detail span { color: #5c7363; font-size: .85rem; }.profile-detail strong { overflow-wrap: anywhere; }
+.profile-edit-card { max-width: 720px; }.profile-card-heading { margin-bottom: 1rem; }.profile-card-heading h2 { margin: .2rem 0; }
+.profile-form { display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+input[readonly] { background: #edf2ed; color: #536758; cursor: not-allowed; } small { color: #5c7363; }
+.profile-actions { display: flex; gap: .75rem; grid-column: 1 / -1; }.secondary-button { background: #e4eee5; color: #183b25; }
+.disease-upload-form { max-width: none; }.upload-zone { align-items: center; background: white; border: 2px dashed #8cb79a; cursor: pointer; display: flex; justify-content: center; min-height: 210px; overflow: hidden; padding: 1rem; text-align: center; }
+.upload-zone input { display: none; }.upload-placeholder { display: grid; gap: .5rem; }.upload-placeholder strong { color: #176b3a; font-size: 1.1rem; }.upload-preview { max-height: 300px; max-width: 100%; object-fit: contain; }
+.disease-upload-actions { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; }.selected-image-name { flex: 1; overflow-wrap: anywhere; }
+.disease-result-card { background: white; box-shadow: 0 3px 12px rgba(24,59,37,.08); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 1.5rem; }.disease-result-image { align-items: center; background: #edf5ee; display: flex; justify-content: center; min-height: 280px; padding: 1rem; }.disease-result-image img { max-height: 380px; max-width: 100%; object-fit: contain; }.disease-result-details { padding: 1.5rem; }.disease-result-details h2 { margin: .35rem 0 1rem; }.guidance { background: #f3f8f2; border-left: 4px solid #176b3a; margin-top: 1rem; padding: .85rem 1rem; }.guidance h3 { margin: 0 0 .4rem; }.guidance p { margin: 0; }
+button:disabled { cursor: not-allowed; opacity: .65; }
+@media (max-width: 700px) { header { align-items: flex-start; flex-direction: column; gap: .75rem; padding: 1rem; } header nav { display: flex; flex-wrap: wrap; gap: .55rem; } header a, .nav-button, .farmer-name { margin-left: 0; } main { margin: 1.5rem auto; }.profile-hero { align-items: flex-start; flex-wrap: wrap; }.profile-edit-button { margin-left: 0; }.profile-sections, .profile-form, .disease-result-card { grid-template-columns: 1fr; }.profile-actions { grid-column: auto; }.disease-result-image { min-height: 210px; } }

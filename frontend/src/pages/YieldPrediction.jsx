@@ -24,8 +24,8 @@ export default function YieldPrediction() {
     }
   }
 
-  return <main>
-    <h1>Crop Yield Prediction</h1>
+  return <main className="yield-page">
+    <section className="page-hero yield-hero"><h1>Crop Yield Prediction</h1><p>Estimate crop yield from seasonal and farm conditions.</p></section>
     <form onSubmit={submit}>
       {Object.entries(values).map(([name, value]) => <label key={name}>{name}
         <input required type={typeof value === 'number' ? 'number' : 'text'} step="any" value={value} onChange={(event) => setValues({ ...values, [name]: typeof value === 'number' ? Number(event.target.value) : event.target.value })} />

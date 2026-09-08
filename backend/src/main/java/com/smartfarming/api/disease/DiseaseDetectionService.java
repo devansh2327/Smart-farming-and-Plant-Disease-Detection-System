@@ -2,10 +2,12 @@ package com.smartfarming.api.disease;
 
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.MultipartBodyBuilder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,11 +26,21 @@ public class DiseaseDetectionService {
     }
 
     public Map<String, Object> detect(MultipartFile image) {
-        MultipartBodyBuilder bodyBuilder = new MultipartBodyBuilder();
-        bodyBuilder.part("image", image.getResource()).filename(image.getOriginalFilename());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-        return restTemplate.postForObject(mlServiceUrl + "/disease-detection",
-                new HttpEntity<>(bodyBuilder.build(), headers), Map.class);
+        try {
+            ByteArrayResource imageResource = new ByteArrayResource(image.getBytes()) {
+                @Override
+                public String getFilename() {
+                    return image.getOriginalFilename();
+                }
+            };
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("image", imageResource);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+            return restTemplate.postForObject(mlServiceUrl + "/disease-detection",
+                    new HttpEntity<>(body, headers), Map.class);
+        } catch (java.io.IOException error) {
+            throw new IllegalArgumentException("Unable to read the uploaded image", error);
+        }
     }
 }
