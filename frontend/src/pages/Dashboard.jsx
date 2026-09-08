@@ -1,31 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+const priorityFeatures = [['🌱', 'Crop Recommendation', 'Find a crop that fits your soil and climate.', '/crop-recommendation'], ['📈', 'Yield Prediction', 'Plan ahead with data-backed yield estimates.', '/yield-prediction'], ['🔎', 'Disease Detection', 'Check leaf health with an image diagnosis.', '/disease-detection']]
+const supportingFeatures = [['☀️', 'Weather', '/weather'], ['₹', 'Market Prices', '/market-prices'], ['🤝', 'Government Schemes', '/government-schemes'], ['💬', 'Farming Chatbot', '/chatbot']]
 
 export default function Dashboard() {
-  const [health, setHealth] = useState('Checking Spring Boot API…')
-
-  useEffect(() => {
-    fetch(`${apiBaseUrl}/api/health`)
-      .then((response) => response.ok ? response.json() : Promise.reject())
-      .then((data) => setHealth(`Backend: ${data.status}`))
-      .catch(() => setHealth('Backend is unavailable. Start Spring Boot on port 8080.'))
-  }, [])
-
-  return (
-    <main className="dashboard-page">
-      <section className="page-hero dashboard-hero"><h1>Smart Farming Dashboard</h1><p>Machine Learning Based Smart Farming and Plant Disease Detection System</p></section>
-      <p className="health-status">{health}</p>
-      <div className="feature-links dashboard-links">
-        <Link to="/crop-recommendation">Crop Recommendation</Link>
-        <Link to="/yield-prediction">Yield Prediction</Link>
-        <Link to="/disease-detection">Disease Detection</Link>
-        <Link to="/weather">Weather</Link>
-        <Link to="/market-prices">Market Prices</Link>
-        <Link to="/government-schemes">Government Schemes</Link>
-        <Link to="/chatbot">Agriculture Chatbot</Link>
-      </div>
-    </main>
-  )
+  return <main className="dashboard-page page-shell"><section className="dashboard-hero premium-hero"><p className="eyebrow">Smart decisions. Better harvests.</p><h1>Grow with clarity,<br />from field to future.</h1><p className="hero-copy">Your simple AgriTech companion for crop planning, plant health and everyday farm decisions.</p><Link className="hero-cta" to="/crop-recommendation">Explore crop insights <span>→</span></Link></section><section className="dashboard-section"><div className="section-heading"><div><p className="eyebrow">Farm intelligence</p><h2>What would you like to do?</h2></div><p>Practical tools designed for everyday farming.</p></div><div className="priority-features">{priorityFeatures.map(([icon, title, description, to], index) => <Link className={`feature-card feature-${index + 1}`} to={to} key={title}><span className="feature-icon">{icon}</span><div><h3>{title}</h3><p>{description}</p></div><span className="feature-arrow">→</span></Link>)}</div><div className="supporting-features">{supportingFeatures.map(([icon, title, to]) => <Link to={to} key={title}><span>{icon}</span>{title}<b>→</b></Link>)}</div></section></main>
 }

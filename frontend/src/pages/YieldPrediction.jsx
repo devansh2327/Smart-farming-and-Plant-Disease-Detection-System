@@ -1,38 +1,4 @@
 import { useState } from 'react'
-
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
 const initialValues = { year: 1990, averageRainfallMmPerYear: 1485, pesticidesTonnes: 121, averageTemperature: 16.37, area: 'Albania', item: 'Maize' }
-
-export default function YieldPrediction() {
-  const [values, setValues] = useState(initialValues)
-  const [result, setResult] = useState('')
-  const [error, setError] = useState('')
-
-  async function submit(event) {
-    event.preventDefault()
-    setResult('')
-    setError('')
-    try {
-      const response = await fetch(`${apiBaseUrl}/api/ml/yield-prediction`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values),
-      })
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.message || data.detail || 'Prediction failed')
-      setResult(`Predicted yield: ${data.predictedYield} hg/ha`)
-    } catch (requestError) {
-      setError(requestError.message)
-    }
-  }
-
-  return <main className="yield-page">
-    <section className="page-hero yield-hero"><h1>Crop Yield Prediction</h1><p>Estimate crop yield from seasonal and farm conditions.</p></section>
-    <form onSubmit={submit}>
-      {Object.entries(values).map(([name, value]) => <label key={name}>{name}
-        <input required type={typeof value === 'number' ? 'number' : 'text'} step="any" value={value} onChange={(event) => setValues({ ...values, [name]: typeof value === 'number' ? Number(event.target.value) : event.target.value })} />
-      </label>)}
-      <button type="submit">Predict Yield</button>
-    </form>
-    {result && <p className="health-status">{result}</p>}
-    {error && <p className="error">{error}</p>}
-  </main>
-}
+export default function YieldPrediction() { const [values, setValues] = useState(initialValues); const [result, setResult] = useState(''); const [error, setError] = useState(''); async function submit(event) { event.preventDefault(); setResult(''); setError(''); try { const response = await fetch(`${apiBaseUrl}/api/ml/yield-prediction`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) }); const data = await response.json(); if (!response.ok) throw new Error(data.message || data.detail || 'Prediction failed'); setResult(data.predictedYield) } catch (requestError) { setError(requestError.message) } } return <main className="yield-page page-shell"><section className="page-hero yield-hero"><p className="eyebrow">Yield intelligence</p><h1>Plan the season with a clearer outlook.</h1><p>Estimate harvest potential from historic climate and production inputs.</p></section><section className="tool-panel"><div className="tool-panel-intro"><span>📊</span><div><h2>Production details</h2><p>Use values compatible with the prediction data.</p></div></div><form onSubmit={submit} className="smart-form yield-form">{Object.entries(values).map(([name, value]) => <label key={name}>{name.replace(/([A-Z])/g, ' $1')}<input required type={typeof value === 'number' ? 'number' : 'text'} step="any" value={value} onChange={(event) => setValues({ ...values, [name]: typeof value === 'number' ? Number(event.target.value) : event.target.value })} /></label>)}<button type="submit">Predict yield <span>→</span></button></form></section>{result && <section className="result-spotlight yield-result"><p className="eyebrow">Estimated yield</p><h2>{result}<small> hg/ha</small></h2><p>An estimate to support planning, not a guarantee of harvest.</p></section>}{error && <p className="error">{error}</p>}</main> }
