@@ -1,205 +1,236 @@
-Machine Learning Based Smart Farming and Plant Disease Detection System
-An integrated smart agriculture platform that combines machine
-learning, computer vision, and web technologies to support data-driven
-agricultural decision-making.
-Overview
-The system brings multiple agricultural services into one web
-application:
-🌾 Crop Recommendation using a Random Forest Classifier
-📈 Crop Yield Prediction using a Decision Tree Regressor
-🍃 Plant Disease Detection using a CNN
-🌦️ Weather Information
-💰 Crop Market Prices
-🏛️ Government Agriculture Schemes
-🤖 Gemini-powered AI Farming Chatbot
-🔐 Farmer Registration, Login, JWT Authentication, and Profile
-🌐 English/Hindi farming assistance
-The project is intentionally designed as a focused academic application
-rather than a complex enterprise system.
-Architecture
-``` text
-React Frontend (:5173)
-        |
-        v
-Spring Boot REST API (:8080)
-        |
-        +--------------------> PostgreSQL (:1144)
-        |
-        +--------------------> FastAPI ML Service (:8000)
-                                      |
-                                      +--> Crop Recommendation
-                                      |    Random Forest
-                                      |
-                                      +--> Yield Prediction
-                                      |    Decision Tree
-                                      |
-                                      +--> Plant Disease Detection
-                                           CNN
-```
-Request flow: React → Spring Boot → FastAPI → ML Model.
-React does not directly call the FastAPI service.
-Technology Stack
+🌾 Smart Farming & Plant Disease Detection System
+
+A full-stack smart agriculture web application that helps farmers make better decisions using Machine Learning, Computer Vision, and AI.
+
+The platform provides crop recommendations, yield prediction, plant disease detection, weather information, market prices, government schemes, and an AI farming chatbot — all in one place.
+
+✨ Features
+
+🔐 Farmer Authentication
+
+Register and login
+
+JWT-based authentication
+
+Secure password hashing with BCrypt
+
+👨‍🌾 Farmer Profile
+
+Farm location
+
+Farm size
+
+Soil type
+
+Irrigation type
+
+Personal details
+
+🌱 Crop Recommendation
+
+Uses soil and weather-related inputs
+
+Recommends a suitable crop using Machine Learning
+
+📈 Crop Yield Prediction
+
+Predicts expected crop yield
+
+Uses agricultural and environmental parameters
+
+🍃 Plant Disease Detection
+
+Upload a plant leaf image
+
+Detects supported plant diseases
+
+Shows prediction confidence and basic guidance
+
+🌦️ Weather
+
+Current agricultural weather information
+
+Powered by OpenWeather API
+
+💰 Market Prices
+
+Agricultural crop price information
+
+🏛️ Government Schemes
+
+Agriculture-related government schemes
+
+Benefits and eligibility information
+
+🤖 AI Farming Chatbot
+
+Agriculture-focused chatbot
+
+Powered by Google Gemini
+
+Supports English and Hindi
+
+Maintains conversation context
+
+📊 Modern Dashboard
+
+Clean and responsive UI
+
+Easy access to all major features
+
+🏗️ Project Architecture
+
+                    ┌─────────────────────┐
+                    │   React Frontend    │
+                    │       :5173         │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Spring Boot Backend │
+                    │       :8080         │
+                    └──────┬───────┬──────┘
+                           │       │
+                ┌──────────┘       └──────────┐
+                ▼                             ▼
+       ┌─────────────────┐          ┌─────────────────┐
+       │   PostgreSQL    │          │ FastAPI ML      │
+       │     :1144       │          │     :8000       │
+       └─────────────────┘          └────────┬────────┘
+                                             │
+                              ┌──────────────┼──────────────┐
+                              ▼              ▼              ▼
+                           Crop ML        Yield ML      Disease CNN
+
+Request Flow
+
+React → Spring Boot → FastAPI → ML Model
+
+The React frontend communicates with Spring Boot. The frontend does not directly call the FastAPI ML service.
+
+🛠️ Tech Stack
+
 Frontend
+
 React
+
 Vite
+
 JavaScript
-HTML/CSS
+
+HTML5
+
+CSS3
+
 Backend
+
 Java
+
 Spring Boot
+
 Spring Security
+
 Spring Data JPA
+
 REST APIs
+
 JWT
+
 BCrypt
+
 Database
+
 PostgreSQL
-ML Service
+
+Machine Learning
+
 Python
+
 FastAPI
+
 Uvicorn
-NumPy
-Pandas
+
 Scikit-learn
+
 TensorFlow
-Python Multipart
-AI / External Services
+
+NumPy
+
+Pandas
+
+AI & APIs
+
 Google Gemini API
+
 OpenWeather API
-Machine Learning Modules
-1. Crop Recommendation
-Crop selection is treated as a multi-class classification problem.
+
+🤖 Machine Learning
+
+Crop Recommendation
+
+Algorithm: Random Forest Classifier
+
 Inputs:
-``` text
-N, P, K, Temperature, Humidity, pH, Rainfall
-```
-Model:
-``` text
-Random Forest Classifier
-```
-The system supports 22 crop classes, including Rice, Maize, Cotton,
-Coconut, Apple, Mango, Banana, Chickpea, Coffee and others.
-2. Crop Yield Prediction
-Yield prediction is treated as a supervised regression problem.
-Inputs:
-``` text
+
+Nitrogen
+Phosphorus
+Potassium
+Temperature
+Humidity
+pH
+Rainfall
+
+The model recommends a suitable crop based on the provided soil and climate conditions.
+
+Crop Yield Prediction
+
+Algorithm: Decision Tree Regressor
+
+Inputs include:
+
 Year
-Average Rainfall
-Pesticides
-Average Temperature
+Rainfall
+Pesticide usage
+Average temperature
 Area
-Crop/Item
-```
-Preprocessing:
-``` text
-Numerical features → StandardScaler
-Categorical features → OneHotEncoder
-                     ↓
-               ColumnTransformer
-                     ↓
-             Decision Tree Regressor
-```
+Crop type
+
 Output:
-``` text
+
 Predicted Yield (hg/ha)
-```
-Example verified output:
-``` text
-Albania + Maize → 36613.0 hg/ha
-```
-This is a model prediction, not a guaranteed real-world yield.
-3. Plant Disease Detection
-The disease module performs image classification.
-``` text
+
+Plant Disease Detection
+
+Algorithm: Convolutional Neural Network (CNN)
+
+Pipeline:
+
 Leaf Image
     ↓
-RGB Processing
+Image Preprocessing
     ↓
-Resize to 128 × 128
+128 × 128 RGB Image
     ↓
-CNN
+CNN Model
     ↓
-38 Disease Classes
-    ↓
-Disease + Confidence
-```
-The integrated model accepts `128 × 128 × 3` RGB images.
-A project test successfully returned:
-``` text
-Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
-Confidence: 96.47%
-```
-Authentication
-The application supports farmer-only authentication.
-Registration includes:
-Full name
-Email
-Password
-Optional phone
-FARMER role
-Security:
-BCrypt password hashing
-JWT authentication
-Protected farmer profile endpoints
-Farmer profile fields include:
-Full name
-Email
-Phone
-Farm location
-Farm size
-Soil type
-Irrigation type
-AI Farming Chatbot
-The chatbot uses Gemini through the backend:
-``` text
-React
-  ↓
-POST /api/chatbot
-  ↓
-Spring Boot
-  ↓
-Gemini API
-```
-The Gemini API key is stored only in the local ignored file:
-``` text
-backend/.env
-```
-Example:
-``` env
-GEMINI_API_KEY=your-key-here
-GEMINI_MODEL=gemini-2.0-flash
-```
-Never commit real API keys or passwords to GitHub.
-The chatbot is designed for agriculture-focused questions and supports
-English/Hindi interaction and follow-up context.
-Weather
-Weather requests are handled by Spring Boot using the OpenWeather API.
-The API key remains server-side.
-``` env
-OPENWEATHER_API_KEY=your-key-here
-```
-Market Prices and Government Schemes
-The application includes:
-Agricultural market-price information
-Government agriculture scheme information
-Scheme benefits and eligibility/application details
-These services complement the machine-learning decision-support modules.
-Project Structure
-``` text
+Disease Class + Confidence
+
+The current model supports 38 disease classes.
+
+📁 Project Structure
+
 smart farming/
 │
-├── AGENTS.md
-├── .gitignore
-├── backend/
+├── backend/                    # Spring Boot backend
 │   ├── src/
 │   ├── .env
 │   └── pom.xml
 │
-├── frontend/
+├── frontend/                   # React frontend
 │   ├── src/
 │   └── package.json
 │
-├── ml-service/
+├── ml-service/                 # FastAPI ML service
 │   ├── app/
 │   │   ├── main.py
 │   │   ├── services/
@@ -207,78 +238,97 @@ smart farming/
 │   │   └── models/
 │   └── requirements.txt
 │
-├── Crop-Recommendation/
-├── Crop-Yields-Prediction/
-└── Plant_Disease_Prediction/
-```
-Local Setup
-Prerequisites
-Install:
+├── Crop-Recommendation/        # Crop ML resources
+├── Crop-Yields-Prediction/     # Yield ML resources
+├── Plant_Disease_Prediction/   # Disease ML resources
+│
+├── AGENTS.md
+└── .gitignore
+
+⚙️ Requirements
+
+Make sure you have:
+
 Git
+
 Java
+
 Maven
-Node.js and npm
+
+Node.js
+
+npm
+
 Python
+
 PostgreSQL
-Current local ports:
-``` text
-PostgreSQL  → 1144
-FastAPI     → 8000
-Spring Boot → 8080
-React       → 5173
-```
-1. PostgreSQL
-Check the configured port:
-``` powershell
+
+🚀 Run the Project
+
+The application uses three main processes.
+
+1. Start PostgreSQL
+
+PostgreSQL runs as a Windows service.
+
+Check whether the project database port is active:
+
 netstat -ano | findstr :1144
-```
-You should see `LISTENING`.
-The project database is:
-``` text
-Database: smart_farming
-Host: localhost
+
+The project uses:
+
+Host: 127.0.0.1
 Port: 1144
+Database: smart_farming
 User: postgres
-```
-2. FastAPI / ML Service
-``` powershell
+
+2. Start ML Service
+
+Open a terminal:
+
 cd "C:\Users\devan\Downloads\smart farming\ml-service"
 python -m uvicorn app.main:app --reload --port 8000
-```
+
 FastAPI documentation:
-``` text
+
 http://localhost:8000/docs
-```
-Keep this terminal open.
-3. Spring Boot
+
+Keep this terminal running.
+
+3. Start Spring Boot
+
 Open another terminal:
-``` powershell
+
 cd "C:\Users\devan\Downloads\smart farming\backend"
 mvn spring-boot:run
-```
+
 Backend:
-``` text
+
 http://localhost:8080
-```
-Keep this terminal open.
-4. React
-Open a third terminal:
-``` powershell
+
+Keep this terminal running.
+
+4. Start React
+
+Open another terminal:
+
 cd "C:\Users\devan\Downloads\smart farming\frontend"
 npm run dev
-```
+
 Open:
-``` text
+
 http://localhost:5173
-```
-Environment Variables
-Use the local ignored file:
-``` text
+
+🔑 Environment Variables
+
+Create a local:
+
 backend/.env
-```
-Typical configuration:
-``` env
+
+Example:
+
 SPRING_PROFILES_ACTIVE=postgres
+
 DB_URL=jdbc:postgresql://localhost:1144/smart_farming
 DB_USERNAME=postgres
 DB_PASSWORD=YOUR_POSTGRES_PASSWORD
@@ -289,82 +339,94 @@ OPENWEATHER_API_KEY=YOUR_OPENWEATHER_KEY
 
 GEMINI_API_KEY=YOUR_GEMINI_KEY
 GEMINI_MODEL=gemini-2.0-flash
-```
-Never commit the real `.env` file.
-Testing
-The major application flows have been tested, including:
-Farmer registration
-Duplicate registration handling
-Login and invalid-login handling
-JWT-protected profile access
-Profile update and PostgreSQL persistence
-Crop recommendation
-Yield prediction
-Plant disease detection
-Weather
-Market prices
-Government schemes
-Hindi/English chatbot
-CORS
-Maven build
-React production build
-Example ML results:
-``` text
-Crop:
-Training sample → Rice / Maize / Mothbeans
 
-Yield:
-Albania + Maize → 36613.0 hg/ha
-Albania + Rice, paddy → 23333.0 hg/ha
-Albania + Wheat → 30197.0 hg/ha
-```
-Unsupported yield categories return validation errors instead of
-fabricated predictions.
-Limitations
-Model performance depends on the quality and representativeness of
-the training datasets.
-Real-world leaf images can differ because of lighting, backgrounds,
-camera quality, and leaf orientation.
-Actual crop yield depends on factors not completely represented by
-the model inputs.
-Disease detection is limited to the supported 38 classes.
-Weather and Gemini features require network access and valid API
-credentials.
-Model predictions are decision-support outputs and are not
-guaranteed real-world outcomes.
-The serialized scikit-learn models were created with an earlier
-scikit-learn version, so matching the training version is preferable
-for reproducibility.
-Future Scope
-Possible extensions include:
-IoT soil and weather sensors
-Mobile application
-Satellite/remote-sensing integration
-Larger and more diverse disease datasets
-Additional crops and disease classes
-Personalized recommendations using historical farmer data
-Improved model evaluation and optimization
-Additional real-time agricultural data sources
-Research Paper
-The project was also developed into an IEEE-format research paper:
-"An Integrated Machine-Learning Framework for Crop Recommendation,
-Yield Forecasting, and Plant Disease Classification in Smart
-Agriculture"
-The paper describes the integrated architecture, ML methodology,
-implementation, and experimental evaluation.
-Team
-Project: Machine Learning Based Smart Farming and Plant Disease
-Detection System
-Member            University Roll No.
----
-Gaurav Singh      2300290100111
-Devansh Gaur      2300290100100
-Dhirendra Singh   2300290100102
-Supervisor: Mr. Harsh Modi
-Department: Computer Science and Engineering  
-Institution: KIET Group of Institutions, Delhi-NCR, Ghaziabad
-Academic Project
-This project was developed as an academic major project demonstrating
-the integration of machine learning, computer vision, AI services, web
-development, authentication, databases, and agricultural
-decision-support functionality in a single platform.
+⚠️ Never commit your real .env file, passwords, or API keys to GitHub.
+
+🔌 Main Services
+
+Service
+
+Port
+
+React Frontend
+
+5173
+
+Spring Boot
+
+8080
+
+FastAPI ML
+
+8000
+
+PostgreSQL
+
+1144
+
+🧪 Testing
+
+The main application flows have been tested, including:
+
+Farmer registration and login
+
+JWT authentication
+
+Farmer profile
+
+Crop recommendation
+
+Crop yield prediction
+
+Plant disease detection
+
+Weather
+
+Market prices
+
+Government schemes
+
+Gemini chatbot
+
+Hindi/English chatbot interaction
+
+Frontend production build
+
+Spring Boot build
+
+FastAPI integration
+
+Example verified ML outputs include crop recommendations such as Rice, Maize, and Mothbeans, and yield predictions such as 36613.0 hg/ha for a tested Albania/Maize input.
+
+⚠️ Notes
+
+ML predictions depend on the training data and input quality.
+
+Plant disease detection works for the disease classes supported by the trained model.
+
+Weather and Gemini features require valid API keys and internet access.
+
+The yield value returned by the model is a prediction and not a guaranteed real-world yield.
+
+Keep all three application terminals running while using the complete local application.
+
+🔮 Future Improvements
+
+Possible future additions:
+
+📱 Mobile application
+
+🌡️ IoT soil and weather sensors
+
+🛰️ Satellite/remote sensing
+
+📍 Location-based agricultural recommendations
+
+📊 More detailed analytics
+
+🌱 More crops and disease classes
+
+👨‍🌾 Personalized farmer recommendations
+
+☁️ Cloud deployment
+
